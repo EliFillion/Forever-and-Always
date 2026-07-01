@@ -11,6 +11,7 @@ interface Props {
   backDescription?: string;
   backImages?: string[];
   bookingNote?: string;
+  isBooked?: boolean;
 }
 
 const {
@@ -25,9 +26,11 @@ const {
   backDescription = description,
   backImages = [],
   bookingNote = "Please contact us before booking any room, as reservations must be arranged through us.",
+  isBooked = false,
 } = Astro.props;
 
 const cardId = `accommodation-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const bookedRibbonClasses = "pointer-events-none absolute left-[-34%] top-1/2 z-10 w-[168%] -translate-y-1/2 -rotate-[42deg] border-y border-[var(--forest)]/20 bg-[rgba(182,141,64,0.24)] py-3 text-center font-serif text-xl uppercase tracking-[0.38em] text-[#5b3a24] shadow-sm backdrop-blur-[1px] sm:text-2xl";
 ---
 
 <style>
@@ -79,6 +82,12 @@ const cardId = `accommodation-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
             Click to see details
           </p>
         </div>
+
+        {isBooked && (
+          <div class={bookedRibbonClasses}>
+            Booked
+          </div>
+        )}
       </div>
 
       <div class="flip-card-face flip-card-back absolute inset-0 h-full w-full overflow-hidden rounded-[1.5rem] border border-[var(--forest)]/10 bg-[linear-gradient(135deg,#f8efe0_0%,#fffaf2_100%)] p-5 text-[var(--forest)] sm:rounded-[2rem] sm:p-8">
@@ -128,6 +137,12 @@ const cardId = `accommodation-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
             </p>
           </div>
         </div>
+
+        {isBooked && (
+          <div class={bookedRibbonClasses}>
+            Booked
+          </div>
+        )}
       </div>
 
     </div>
