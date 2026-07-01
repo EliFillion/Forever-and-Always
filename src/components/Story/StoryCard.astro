@@ -1,0 +1,59 @@
+---
+interface Props {
+  image: string;
+  title: string;
+  date: string;
+  text: string;
+  reverse?: boolean;
+}
+
+const {
+  image,
+  title,
+  date,
+  text,
+  reverse = false,
+} = Astro.props;
+---
+
+<div
+  class={`grid items-center gap-16 py-20 lg:grid-cols-2 ${
+    reverse ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1" : ""
+  }`}
+>
+
+  <div
+    data-aos={reverse ? "fade-left" : "fade-right"}
+    data-aos-offset="320"
+    data-aos-duration="1200"
+  >
+
+    <img
+      src={image}
+      alt={title}
+      class="w-full rounded-3xl shadow-2xl"
+    />
+
+  </div>
+
+  <div
+    data-aos="fade-up"
+    data-aos-offset="280"
+    data-aos-duration="1100"
+  >
+
+    <p class="uppercase tracking-[0.35em] text-[var(--gold)]">
+      {date}
+    </p>
+
+    <h3 class="mt-4 text-4xl text-[var(--forest)]">
+      {title}
+    </h3>
+
+    <p class="mt-8 leading-8 text-gray-700">
+      {text}
+    </p>
+
+  </div>
+
+</div>

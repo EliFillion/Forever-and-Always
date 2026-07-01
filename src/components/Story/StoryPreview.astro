@@ -1,0 +1,58 @@
+---
+import SectionHeading from "../UI/SectionHeading.astro";
+import StoryCard from "./StoryCard.astro";
+---
+
+<section id="story" class="bg-[var(--cream)] py-32">
+
+  <div class="container max-w-6xl">
+
+    <SectionHeading
+      eyebrow="Our Story"
+      title="Every Story Has A Beginning"
+      verse="He has made everything beautiful in its time."
+      reference="Ecclesiastes 3:11"
+    />
+
+    <StoryCard
+      image="/images/story/story-1.jpg"
+      title="How We Met"
+      date="Late 2022"
+      text="We first met at our church's youth group in late 2022 where we had the opportunity to serve together. Through serving side by side, conversations came naturally, and what started as friendship slowly grew into something much deeper. Before long, we were talking every day, getting to know one another, encouraging each other in our faith, and becoming best friends."
+    />
+
+    <StoryCard
+      reverse
+      image="/images/story/story-2.jpg"
+      title="Our Journey Begins"
+      date="May 22, 2024"
+      text="We officially started dating just one week before Éli-Samuel left for Canada. Over the next two years, including two summers of long distance, our relationship only grew stronger. We knew we had found someone special, sharing a deep love for Christ, the same values, and our greatest joy in simply being together. Around each other, we could always be completely ourselves."
+    />
+
+    <StoryCard
+      image="/images/story/story-3.jpg"
+      title="She Said Yes"
+      date="May 25, 2026"
+      text="After two incredible years together, our next chapter began. While Delilah and her family were enjoying a vacation in Florida, Éli-Samuel secretly flew there to surprise her with the help of her parents. Waiting on the beach outside their Airbnb, he asked her to marry him, and amid a few joyful tears, she said yes!"
+    />
+
+    <StoryCard
+      reverse
+      image="/images/story/story-4.jpg"
+      title="Forever Begins"
+      date="October 11, 2026"
+      text="Now we are incredibly thankful for God's faithfulness throughout our journey and for the love and support of our family and friends. We can't wait to celebrate this special day with all of you!"
+    />
+
+    <div class="mt-8 border-t border-[var(--forest)]/15 pt-8 text-center">
+      <p class="text-sm uppercase tracking-[0.35em] text-[var(--gold)]">
+        Psalm 63:7
+      </p>
+      <p class="mt-4 font-serif text-2xl italic text-[var(--forest)] sm:text-3xl">
+        “Because You have been my help, therefore in the shadow of Your wings I will rejoice.”
+      </p>
+    </div>
+
+  </div>
+
+</section>

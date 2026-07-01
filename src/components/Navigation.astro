@@ -1,0 +1,131 @@
+<nav class="fixed inset-x-0 top-0 z-50 overflow-x-clip px-0.5 pt-2 sm:px-3 sm:pt-0">
+  <div
+    class="mx-auto ml-0 mt-1 flex w-[calc(100vw-0.25rem)] max-w-7xl items-center justify-between overflow-hidden rounded-full border border-white/10 bg-black/35 px-3 py-3 shadow-xl backdrop-blur-xl sm:ml-auto sm:mt-5 sm:w-[calc(100vw-1rem)] sm:px-6 sm:py-4 md:px-8"
+  >
+
+    <a href={Astro.url.pathname === "/rsvp" ? "/" : "#"} class="group max-w-full">
+      <div class="leading-none">
+        <div class="font-serif text-[1.45rem] tracking-[0.2em] text-white sm:text-3xl sm:tracking-[0.25em]">
+          E <span class="text-amber-300">&amp;</span> D
+        </div>
+
+        <div class="mt-1 text-[10px] uppercase tracking-[0.45em] text-gray-300">
+          October 11 • 2026
+        </div>
+      </div>
+    </a>
+
+    <button
+      id="mobile-nav-toggle"
+      type="button"
+      class="inline-flex shrink-0 items-center justify-center rounded-full border border-white/15 p-2 text-white md:hidden"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <div class="hidden items-center gap-10 md:flex">
+
+      <a href="/#story" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
+        Our Story
+      </a>
+
+      <a href="/#wedding" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
+        Wedding
+      </a>
+
+      <a href="/#accommodations" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
+        Accommodations
+      </a>
+
+      <a href="/#travel" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
+        Travel
+      </a>
+
+      <a href="/#gifts" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
+        Gifts
+      </a>
+
+      <a href="/#faq" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
+        FAQ
+      </a>
+
+      <a href="/rsvp" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
+        RSVP
+      </a>
+
+    </div>
+
+  </div>
+
+  <div id="mobile-nav-menu" class="mx-auto mt-3 hidden w-[calc(100vw-1rem)] max-w-7xl flex-col gap-2 overflow-hidden rounded-3xl border border-white/10 bg-black/70 p-3 shadow-xl backdrop-blur-xl md:hidden">
+    <a href="/#story" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
+      Our Story
+    </a>
+
+    <a href="/#wedding" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
+      Wedding
+    </a>
+
+    <a href="/#accommodations" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
+      Accommodations
+    </a>
+
+    <a href="/#travel" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
+      Travel
+    </a>
+
+    <a href="/#gifts" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
+      Gifts
+    </a>
+
+    <a href="/#faq" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
+      FAQ
+    </a>
+
+    <a href="/rsvp" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
+      RSVP
+    </a>
+  </div>
+</nav>
+
+<script type="module">
+  const initNavigation = () => {
+    const mobileToggle = document.querySelector("#mobile-nav-toggle");
+    const mobileMenu = document.querySelector("#mobile-nav-menu");
+
+    if (!(mobileToggle instanceof HTMLButtonElement) || !(mobileMenu instanceof HTMLElement)) return;
+
+    const setMenuState = (isOpen) => {
+      mobileToggle.setAttribute("aria-expanded", String(isOpen));
+      mobileMenu.classList.toggle("hidden", !isOpen);
+      mobileMenu.classList.toggle("flex", isOpen);
+    };
+
+    mobileToggle.addEventListener("click", (event) => {
+      event.preventDefault();
+      const isExpanded = mobileToggle.getAttribute("aria-expanded") === "true";
+      setMenuState(!isExpanded);
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMenuState(false));
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!mobileMenu.contains(target) && !mobileToggle.contains(target)) {
+        setMenuState(false);
+      }
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initNavigation);
+  } else {
+    initNavigation();
+  }
+</script>

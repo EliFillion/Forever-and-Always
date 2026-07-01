@@ -1,0 +1,90 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Navigation from "../components/Navigation.astro";
+---
+
+<MainLayout title="RSVP | Éli-Samuel & Delilah">
+
+  <Navigation />
+
+  <section class="min-h-screen bg-[var(--cream)] py-40">
+
+    <div class="container max-w-3xl">
+
+      <div data-aos="fade-up" class="mb-16 text-center">
+
+        <p class="uppercase tracking-[0.45em] text-[var(--gold)]">
+          RSVP
+        </p>
+
+        <h1 class="mt-4 font-serif text-5xl text-[var(--forest)]">
+          We'd Love to Celebrate With You
+        </h1>
+
+        <p class="mt-8 text-lg leading-8 text-gray-600">
+          Kindly respond by <strong>September 1, 2026</strong>.
+          We can't wait to celebrate this special day together!
+        </p>
+
+      </div>
+
+      <form
+        action="https://formspree.io/f/mykqnzga"
+        method="POST"
+        class="space-y-8 rounded-3xl bg-white p-10 shadow-xl"
+        id="rsvp-form"
+      >
+
+        <div>
+          <label for="name" class="mb-2 block font-semibold text-[var(--forest)]">Full Name</label>
+          <input id="name" name="name" type="text" class="w-full rounded-xl border p-4" placeholder="Your name" required />
+        </div>
+
+        <div>
+          <label for="attendance" class="mb-2 block font-semibold text-[var(--forest)]">Will you be attending?</label>
+          <select id="attendance" name="attendance" class="w-full rounded-xl border p-4" required>
+            <option value="">Select an option</option>
+            <option value="Joyfully Accepts">Joyfully Accepts</option>
+            <option value="Regretfully Declines">Regretfully Declines</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="guests" class="mb-2 block font-semibold text-[var(--forest)]">Number of Guests</label>
+          <input id="guests" name="guests" type="number" min="1" max="10" class="w-full rounded-xl border p-4" value="1" required />
+        </div>
+
+        <div>
+          <label for="message" class="mb-2 block font-semibold text-[var(--forest)]">Message for the Couple</label>
+          <textarea id="message" name="message" rows="5" class="w-full rounded-xl border p-4" placeholder="Optional"></textarea>
+        </div>
+
+        <div id="form-success" class="hidden rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+          Thank you! Your RSVP has been sent successfully.
+        </div>
+
+        <button
+          type="submit"
+          class="rounded-full bg-[var(--gold)] px-8 py-4 font-semibold text-white transition hover:scale-105"
+        >
+          Send RSVP
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <script>
+    const form = document.getElementById('rsvp-form');
+    const successMessage = document.getElementById('form-success');
+
+    if (form && successMessage) {
+      form.addEventListener('submit', () => {
+        successMessage.classList.remove('hidden');
+      });
+    }
+  </script>
+
+</MainLayout>

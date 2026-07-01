@@ -1,0 +1,47 @@
+---
+import SectionHeading from "../UI/SectionHeading.astro";
+import GiftCard from "./GiftCard.astro";
+---
+
+<section id="gifts" class="bg-white py-32">
+
+  <div class="container max-w-5xl">
+
+    <SectionHeading
+      eyebrow="Gifts"
+      title="Your Presence Is Our Greatest Gift"
+    />
+
+    <div class="grid gap-10 md:grid-cols-2">
+
+      <GiftCard
+        title="Celebrate With Us"
+        description="The greatest gift we could receive is the opportunity to celebrate our wedding day with you. Your love, prayers, and support mean more to us than anything else. We are so grateful to share this special day with each of you."
+      />
+
+      <div class="rounded-3xl border border-gray-200 bg-[var(--cream)] p-10 shadow-lg">
+
+        <h3 class="font-serif text-3xl text-[var(--forest)]">
+          Wedding Registry
+        </h3>
+
+        <p class="mt-6 leading-8 text-gray-700">
+          For those who desire to bless us further, we do have an Amazon Registry. Thank you for your generosity and kindness as we begin this new chapter together.
+        </p>
+
+        <a
+          href="https://www.amazon.com/wedding/guest-view/3RKN96P55OT9K"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-10 inline-flex items-center rounded-full bg-[var(--gold)] px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-90"
+        >
+          View Our Amazon Registry
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

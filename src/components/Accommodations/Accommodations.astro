@@ -1,0 +1,77 @@
+---
+import SectionHeading from "../UI/SectionHeading.astro";
+import AccommodationCard from "./AccommodationCard.astro";
+---
+
+<section id="accommodations" class="bg-white py-32">
+
+  <div class="container max-w-6xl">
+
+    <SectionHeading
+      eyebrow="Accommodations"
+      title="A Place to Stay"
+    />
+
+    <div class="grid gap-10 lg:grid-cols-2">
+
+      <AccommodationCard
+        image="/images/accommodations/lodge.jpg"
+        title="Hartsel Ranch Lodge"
+        description="Our main lodge offers beautiful mountain views and is located right at the wedding venue, making it the most convenient place to stay."
+        driveTime="On site"
+        directions="Right at the venue"
+        website="https://www.hartselranch.co/book-a-room"
+        cost="$200 per room per night for our discounted wedding rate"
+        space="Cozy lodge rooms with warm mountain charm and welcoming shared gathering spaces"
+        backDescription="The lodge is the most convenient option for guests staying close to the celebration. It brings together mountain views, comfortable rooms, and a cozy, welcoming atmosphere that feels right at home for a weekend wedding getaway."
+        backImages={["/images/accommodations/lodge2.jpg", "/images/accommodations/lodge3.jpg"]}
+        bookingNote="Please contact us before booking any room. Reservations must be arranged through us."
+      />
+
+      <AccommodationCard
+        image="/images/accommodations/cabin.jpg"
+        title="Luxury Cabins at Hartsel Ranch"
+        description="There are several cozy cabins available near the venue for couples, families, and groups looking to enjoy a Colorado mountain getaway."
+        driveTime="On site"
+        directions="Just minutes from the venue"
+        website="https://www.hartselranch.co/book-a-room"
+        cost="$400 per cabin per night for our discounted wedding rate"
+        space="Private, cozy cabins with mountain charm and a peaceful setting for a restful stay"
+        backDescription="These cabins offer a more secluded option for guests who want a cozy mountain retreat close to the celebration. They’re ideal for couples, families, or small groups looking for privacy and comfort."
+        backImages={["/images/accommodations/cabin2.jpeg", "/images/accommodations/cabin3.jpg"]}
+        bookingNote="Please contact us before booking any cabin. Reservations must be arranged through us."
+      />
+
+      <AccommodationCard
+        image="/images/accommodations/buena.jpg"
+        title="Best Western Vista Inn"
+        description="Comfortable hotel-style accommodations with a simple, convenient place to rest close to the mountains."
+        driveTime="About 25 minutes"
+        directions="Take Highway 24 toward Buena Vista and follow signs for the hotel."
+        website="https://www.bestwestern.com/en_US/book/hotels-in-buena-vista/best-western-vista-inn/propertyCode.06164.html"
+        cost="$150-$200 per night"
+        space="Comfortable guest rooms with a practical, relaxed stay for travelers looking for an easy mountain base"
+        backDescription="The Best Western Vista Inn is a convenient option for guests who want a straightforward hotel stay with easy access to Buena Vista and the surrounding mountains."
+        backImages={["/images/accommodations/buena2.jpg", "/images/accommodations/buena3.jpg"]}
+        bookingNote="Guests can book this stay on their own whenever they’d like."
+      />
+
+      <AccommodationCard
+        image="/images/accommodations/micro.jpg"
+        title="Microtel Inn & Suites by Wyndham Woodland Park"
+        description="A practical and comfortable stay with convenient access to Woodland Park and the surrounding mountains."
+        driveTime="About 50 minutes"
+        directions="Head to Woodland Park and follow the main route into town for the hotel."
+        website="https://www.wyndhamhotels.com/microtel/woodland-park-colorado/microtel-inn-and-suites-by-wyndham-woodland-park/overview"
+        cost="$170-$200 per night"
+        space="Simple, comfortable rooms that make a convenient stopover for a relaxed mountain weekend"
+        backDescription="This hotel offers a comfortable, easygoing option for guests who want a straightforward stay near Woodland Park without overcomplicating the trip."
+        backImages={["/images/accommodations/micro2.jpg", "/images/accommodations/micro3.jpg"]}
+        bookingNote="Guests can book this stay on their own whenever they’d like."
+      />
+
+    </div>
+
+  </div>
+
+</section>

@@ -1,0 +1,22 @@
+---
+interface Props {
+  image: string;
+  alt: string;
+}
+
+const { image, alt } = Astro.props;
+---
+
+<div
+  data-aos="zoom-in"
+  data-aos-duration="900"
+  class="overflow-hidden rounded-3xl shadow-xl"
+>
+
+  <img
+    src={image}
+    alt={alt}
+    class="aspect-[4/5] w-full object-cover"
+  />
+
+</div>

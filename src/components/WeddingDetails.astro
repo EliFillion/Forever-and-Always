@@ -1,0 +1,147 @@
+---
+import {
+  CalendarDays,
+  Clock3,
+  MapPinned,
+  UtensilsCrossed,
+  Shirt,
+  ExternalLink,
+  Heart,
+  Church,
+  Coffee,
+  PartyPopper,
+} from "lucide-astro";
+---
+
+<section id="wedding" class="bg-white py-32">
+  <div class="container max-w-6xl">
+
+    <div data-aos="fade-up" class="mx-auto mb-20 max-w-3xl text-center">
+      <p class="uppercase tracking-[0.45em] text-[var(--gold)]">Wedding Day</p>
+      <h2 class="mt-4 font-serif text-5xl text-[var(--forest)]">
+        Join Us As We Say "I Do"
+      </h2>
+      <p class="mt-8 text-lg leading-8 text-gray-600">
+        We are so excited to celebrate the beginning of our marriage with our family and friends.
+        Here are the details for our special day.
+      </p>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-2">
+
+      <div data-aos="fade-right" class="rounded-3xl border border-gray-200 bg-[var(--cream)] p-10 shadow-lg">
+
+        <div class="mb-8 flex items-center gap-4">
+          <CalendarDays size={34} class="text-[var(--gold)]" />
+          <div>
+            <h3 class="font-serif text-3xl text-[var(--forest)]">Sunday</h3>
+            <p class="text-gray-600">October 11, 2026</p>
+          </div>
+        </div>
+
+        <div class="space-y-8">
+
+          <div class="flex items-start gap-4">
+            <Clock3 size={24} class="mt-1 text-[var(--gold)]" />
+            <div>
+              <h4 class="font-semibold text-[var(--forest)]">Ceremony</h4>
+              <p class="text-gray-700">2:00 PM</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <UtensilsCrossed size={24} class="mt-1 text-[var(--gold)]" />
+            <div>
+              <h4 class="font-semibold text-[var(--forest)]">Refreshments &amp; Fellowship</h4>
+              <p class="text-gray-700">3:00 PM</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <Heart size={24} class="mt-1 text-[var(--gold)]" />
+            <div>
+              <h4 class="font-semibold text-[var(--forest)]">Reception</h4>
+              <p class="text-gray-700">4:00 PM</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <Shirt size={24} class="mt-1 text-[var(--gold)]" />
+            <div>
+              <h4 class="font-semibold text-[var(--forest)]">Dress Code</h4>
+              <p class="text-gray-700">Semi-Formal</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div data-aos="fade-left" class="rounded-3xl bg-[var(--forest)] p-10 text-white shadow-xl">
+
+        <div class="mb-8 flex items-center gap-4">
+          <MapPinned size={34} class="text-[var(--gold)]" />
+          <div>
+            <h3 class="font-serif text-3xl">Hartsel Ranch</h3>
+            <p class="text-gray-200">Hartsel, Colorado</p>
+          </div>
+        </div>
+
+        <p class="leading-8 text-gray-100">
+          Our ceremony and reception will both take place at Hartsel Ranch,
+          surrounded by the beautiful Colorado mountains.
+          We can't wait to celebrate this unforgettable day with you.
+        </p>
+
+        <a href="https://maps.app.goo.gl/6u8A1tPqC26uttRK9"
+           target="_blank"
+           class="mt-10 inline-flex items-center gap-3 rounded-full bg-[var(--gold)] px-8 py-4 font-semibold text-white transition hover:scale-105 hover:opacity-90">
+          View Venue on Google Maps
+          <ExternalLink size={18} />
+        </a>
+
+      </div>
+
+    </div>
+
+    <div data-aos="fade-up" class="mt-24">
+
+      <h3 class="mb-16 text-center font-serif text-4xl text-[var(--forest)]">
+        Wedding Day Timeline
+      </h3>
+
+      <div class="relative">
+        <div class="absolute left-0 right-0 top-7 hidden h-1 rounded-full bg-[var(--gold)]/30 md:block"></div>
+
+        <div class="grid gap-10 md:grid-cols-4">
+
+          <div class="text-center">
+            <div class="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-white shadow-lg"><Church size={24} /></div>
+            <h4 class="font-serif text-2xl text-[var(--forest)]">2:00 PM</h4>
+            <p class="mt-2 text-gray-700">Ceremony</p>
+          </div>
+
+          <div class="text-center">
+            <div class="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-white shadow-lg"><Coffee size={24} /></div>
+            <h4 class="font-serif text-2xl text-[var(--forest)]">3:00 PM</h4>
+            <p class="mt-2 text-gray-700">Refreshments &amp; Fellowship</p>
+          </div>
+
+          <div class="text-center">
+            <div class="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-white shadow-lg"><UtensilsCrossed size={24} /></div>
+            <h4 class="font-serif text-2xl text-[var(--forest)]">4:00 PM</h4>
+            <p class="mt-2 text-gray-700">Reception</p>
+          </div>
+
+          <div class="text-center">
+            <div class="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-white shadow-lg"><PartyPopper size={24} /></div>
+            <h4 class="font-serif text-2xl text-[var(--forest)]">Evening</h4>
+            <p class="mt-2 text-gray-700">Celebration</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<details
+  data-aos="fade-up"
+  class="rounded-3xl bg-white p-8 shadow-lg"
+>
+
+  <summary class="cursor-pointer text-2xl font-serif text-[var(--forest)]">
+    {question}
+  </summary>
+
+  <p class="mt-6 leading-8 text-gray-700">
+    {answer}
+  </p>
+
+</details>

@@ -1,0 +1,135 @@
+---
+interface Props {
+  image: string;
+  title: string;
+  description: string;
+  driveTime: string;
+  directions: string;
+  website: string;
+  cost: string;
+  space?: string;
+  backDescription?: string;
+  backImages?: string[];
+  bookingNote?: string;
+}
+
+const {
+  image,
+  title,
+  description,
+  driveTime,
+  directions,
+  website,
+  cost,
+  space = "Comfortable mountain lodging with cozy shared spaces and a warm, welcoming feel.",
+  backDescription = description,
+  backImages = [],
+  bookingNote = "Please contact us before booking any room, as reservations must be arranged through us.",
+} = Astro.props;
+
+const cardId = `accommodation-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+---
+
+<style>
+  .flip-card input:checked + label .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-inner {
+    transition: transform 0.7s ease;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card-face {
+    backface-visibility: hidden;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+</style>
+
+<div class="flip-card group [perspective:1000px]">
+  <input id={cardId} type="checkbox" class="sr-only" />
+
+  <label for={cardId} class="block cursor-pointer">
+    <div class="flip-card-inner relative h-[580px] w-full rounded-[1.5rem] bg-white shadow-xl hover:shadow-2xl sm:h-[560px] sm:rounded-[2rem]">
+
+      <div class="flip-card-face absolute inset-0 h-full w-full overflow-hidden rounded-[1.5rem] bg-white sm:rounded-[2rem]">
+        <img
+          src={image}
+          alt={title}
+          class="h-48 w-full object-cover sm:h-56"
+        />
+
+        <div class="p-5 sm:p-8">
+          <h3 class="text-2xl font-serif text-[var(--forest)] sm:text-3xl">
+            {title}
+          </h3>
+
+          <p class="mt-3 text-sm uppercase tracking-[0.25em] text-[var(--gold)]">
+            Drive time from venue • {driveTime}
+          </p>
+
+          <p class="mt-6 leading-8 text-gray-700">
+            {description}
+          </p>
+
+          <p class="mt-5 text-xs uppercase tracking-[0.22em] text-[var(--gold)] sm:text-sm">
+            Click to see details
+          </p>
+        </div>
+      </div>
+
+      <div class="flip-card-face flip-card-back absolute inset-0 h-full w-full overflow-hidden rounded-[1.5rem] border border-[var(--forest)]/10 bg-[linear-gradient(135deg,#f8efe0_0%,#fffaf2_100%)] p-5 text-[var(--forest)] sm:rounded-[2rem] sm:p-8">
+        <div class="flex h-full flex-col">
+          <div>
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <p class="text-xs uppercase tracking-[0.2em] text-[var(--gold)] sm:text-sm sm:tracking-[0.25em]">
+                Details
+              </p>
+              <h3 class="text-xl font-serif sm:text-2xl">
+                {title}
+              </h3>
+            </div>
+
+            <p class="mt-3 text-sm leading-6 text-[var(--forest)]/80 sm:text-base sm:leading-8">
+              {backDescription}
+            </p>
+          </div>
+
+          {backImages.length > 0 && (
+            <div class="mt-4 grid grid-cols-2 gap-2 sm:mt-5">
+              {backImages.slice(0, 2).map((backImage) => (
+                <img src={backImage} alt={`${title} detail`} class="h-16 w-full rounded-xl object-cover sm:h-24 sm:rounded-2xl" />
+              ))}
+            </div>
+          )}
+
+          <div class="mt-4 space-y-2 text-xs leading-5 sm:mt-5 sm:text-sm sm:leading-6">
+            <p>
+              <span class="font-semibold text-[var(--gold)]">Pricing:</span>
+              {cost}
+            </p>
+            <p>
+              <span class="font-semibold text-[var(--gold)]">Space:</span>
+              {space}
+            </p>
+            <p>
+              <span class="font-semibold text-[var(--gold)]">Booking:</span>
+              {bookingNote}
+            </p>
+            <p>
+              <span class="font-semibold text-[var(--gold)]">Website:</span>
+              <a href={website} target="_blank" rel="noreferrer" class="ml-1 underline decoration-[var(--gold)] underline-offset-4">
+                <span class="sm:hidden">Visit website</span>
+                <span class="hidden break-all sm:inline">{website}</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </label>
+</div>

@@ -1,0 +1,63 @@
+---
+import Countdown from "./Countdown.astro";
+import { site } from "../data/site";
+
+const { couple, wedding, welcome } = site;
+---
+
+<section
+  class="relative flex min-h-screen items-center justify-center bg-cover bg-center"
+  style="background-image: url('/images/hero.jpg');"
+>
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/60"></div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 mx-auto flex max-w-5xl flex-col items-center px-6 pt-32 pb-20 text-center text-white">
+
+    <p class="mb-6 uppercase tracking-[0.45em] text-amber-300 text-sm md:text-base">
+      October 11, 2026
+    </p>
+
+    <h1 class="font-serif text-5xl md:text-7xl leading-tight">
+      Forever &amp; Always
+    </h1>
+
+    <div class="mt-10 space-y-3">
+
+      <h2 class="font-serif text-3xl md:text-5xl">
+        Éli-Samuel Fillion
+      </h2>
+
+      <div class="text-amber-300 text-4xl">
+        &amp;
+      </div>
+
+      <h2 class="font-serif text-3xl md:text-5xl">
+        Delilah J. Hershberger
+      </h2>
+
+    </div>
+
+    <div class="mt-14 w-full">
+      <Countdown />
+    </div>
+
+    <p class="mt-14 max-w-2xl text-lg leading-8 text-gray-100">
+      Welcome to our wedding website! We are so thankful you're taking the time to celebrate this special season with us. Whether you're joining us from nearby or traveling from afar, your love, prayers, and friendship mean more to us than words can express. We cannot wait to celebrate the beginning of our marriage with all of you.
+    </p>
+
+    <a
+      href="/rsvp"
+      class="mt-12 rounded-full bg-amber-600 px-10 py-4 text-lg font-semibold text-white shadow-lg transition duration-600 hover:scale-105 hover:bg-amber-700"
+    >
+      RSVP
+    </a>
+
+    <div class="mt-12 animate-bounce text-3xl text-white/80">
+      ↓
+    </div>
+
+  </div>
+
+</section>

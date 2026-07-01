@@ -1,0 +1,44 @@
+---
+import "../styles/global.css";
+import "aos/dist/aos.css";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Forever & Always | Éli-Samuel & Delilah" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+
+  <body>
+
+    <slot />
+
+    <footer class="border-t border-[var(--forest)]/10 bg-[var(--cream)]/70 py-8 text-center text-sm text-[var(--forest)]/70">
+      <p class="font-serif text-base text-[var(--forest)]">Éli-Samuel & Delilah</p>
+      <p class="mt-2">719-338-9865</p>
+      <p class="mt-1">es7_fillion11@hotmail.com</p>
+      <p class="mt-4 text-xs uppercase tracking-[0.25em]">© 2026 Éli-Samuel & Delilah</p>
+    </footer>
+
+    <script type="module">
+      import AOS from "https://cdn.jsdelivr.net/npm/aos@2.3.4/+esm";
+
+      AOS.init({
+        duration: 1100,
+        easing: "ease-out-cubic",
+        once: false,
+        offset: 140,
+        mirror: true,
+      });
+    </script>
+
+  </body>
+</html>

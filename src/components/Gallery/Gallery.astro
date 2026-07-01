@@ -1,0 +1,50 @@
+---
+import SectionHeading from "../UI/SectionHeading.astro";
+import GalleryImage from "./GalleryImage.astro";
+---
+
+<section id="gallery" class="bg-white py-32">
+
+  <div class="container max-w-6xl">
+
+    <SectionHeading
+      eyebrow="Gallery"
+      title="Engagement Pictures"
+    />
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+      <GalleryImage image="/images/gallery/1.jpg" alt="Photo 1" />
+      <GalleryImage image="/images/gallery/2.jpg" alt="Photo 2" />
+      <GalleryImage image="/images/gallery/3.jpg" alt="Photo 3" />
+      <GalleryImage image="/images/gallery/4.jpg" alt="Photo 4" />
+      <GalleryImage image="/images/gallery/5.jpg" alt="Photo 5" />
+      <GalleryImage image="/images/gallery/6.jpg" alt="Photo 6" />
+      <GalleryImage image="/images/gallery/7.jpg" alt="Photo 7" />
+      <GalleryImage image="/images/gallery/8.jpg" alt="Photo 8" />
+      <GalleryImage image="/images/gallery/9.jpg" alt="Photo 9" />
+      <GalleryImage image="/images/gallery/10.jpg" alt="Photo 10" />
+      <GalleryImage image="/images/gallery/11.jpg" alt="Photo 11" />
+      <GalleryImage image="/images/gallery/12.jpg" alt="Photo 12" />
+
+    </div>
+
+    <div
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      class="mx-auto mt-20 max-w-3xl text-center"
+    >
+
+      <p class="text-3xl italic text-[var(--forest)]">
+        "What therefore God has joined together, let no man separate."
+      </p>
+
+      <p class="mt-4 text-[var(--gold)]">
+        Mark 10:9
+      </p>
+
+    </div>
+
+  </div>
+
+</section>

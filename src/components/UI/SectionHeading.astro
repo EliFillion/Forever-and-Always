@@ -1,0 +1,41 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  verse?: string;
+  reference?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  verse = "",
+  reference = "",
+} = Astro.props;
+---
+
+<div class="mx-auto mb-24 max-w-3xl text-center">
+
+  <p class="uppercase tracking-[0.45em] text-[var(--gold)]">
+    {eyebrow}
+  </p>
+
+  <h2 class="mt-4 font-serif text-5xl text-[var(--forest)]">
+    {title}
+  </h2>
+
+  {
+    verse && (
+      <>
+        <p class="mt-8 text-lg italic text-gray-700">
+          "{verse}"
+        </p>
+
+        <p class="mt-2 text-gray-500">
+          {reference}
+        </p>
+      </>
+    )
+  }
+
+</div>

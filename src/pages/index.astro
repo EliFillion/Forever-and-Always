@@ -1,0 +1,59 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+import Navigation from "../components/Navigation.astro";
+import Hero from "../components/Hero.astro";
+import StoryPreview from "../components/Story/StoryPreview.astro";
+import WeddingDetails from "../components/WeddingDetails.astro";
+import Accommodations from "../components/Accommodations/Accommodations.astro";
+import Travel from "../components/Travel/Travel.astro";
+import Gifts from "../components/Gifts/Gifts.astro";
+import FAQ from "../components/FAQ/FAQ.astro";
+import Gallery from "../components/Gallery/Gallery.astro";
+---
+
+<MainLayout>
+
+  <Navigation />
+  <Hero />
+  <StoryPreview />
+  <WeddingDetails />
+  <Accommodations />
+  <Travel />
+  <Gifts />
+  <FAQ />
+  <Gallery />
+
+  <footer
+    class="bg-[var(--forest-dark)] py-24 text-[var(--cream)] md:py-32"
+    data-aos="fade-up"
+    data-aos-duration="1600"
+    data-aos-delay="120"
+    data-aos-easing="ease-out-cubic"
+  >
+    <div class="container max-w-4xl text-center">
+      <p class="mb-8 text-lg leading-8 text-[var(--cream)]/90 md:text-xl">
+        Thank you for being part of our story.
+      </p>
+
+      <p class="mx-auto max-w-3xl text-base leading-8 text-[var(--cream)]/85 md:text-lg">
+        Whether you've known us for years or have only recently become part of our lives, your presence on our wedding day is a tremendous blessing to us. We look forward to celebrating with you and beginning this new chapter surrounded by the people we love.
+      </p>
+
+      <div class="mx-auto mt-10 h-px w-24 bg-[var(--gold)]/80"></div>
+
+      <p class="mt-10 font-serif text-4xl tracking-[0.22em] text-[var(--cream)] md:text-5xl">
+        Forever & Always
+      </p>
+
+      <p class="mt-6 font-serif text-2xl tracking-[0.3em] text-[var(--cream)] md:text-3xl">
+        E <span class="mx-2 text-[var(--gold)]">♡</span> D
+      </p>
+
+      <p class="mt-6 text-sm uppercase tracking-[0.35em] text-[var(--cream)]/80 md:text-base">
+        October 11, 2026
+      </p>
+    </div>
+  </footer>
+
+</MainLayout>
