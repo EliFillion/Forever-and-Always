@@ -33,30 +33,51 @@ import Navigation from "../components/Navigation.astro";
         method="POST"
         class="space-y-8 rounded-3xl bg-white p-10 shadow-xl"
         id="rsvp-form"
+        novalidate
       >
 
-        <div>
-          <label for="name" class="mb-2 block font-semibold text-[var(--forest)]">Full Name</label>
-          <input id="name" name="name" type="text" class="w-full rounded-xl border p-4" placeholder="Your name" required />
+        <div
+          id="form-error"
+          class="hidden rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"
+          role="alert"
+        >
+          Please fill out every field before sending your RSVP.
         </div>
 
-        <div>
+        <div data-field>
+          <label for="name" class="mb-2 block font-semibold text-[var(--forest)]">Full Name</label>
+          <input id="name" name="name" type="text" class="w-full rounded-xl border p-4" placeholder="Your name" required data-required-field aria-describedby="name-error" />
+          <p id="name-error" class="mt-2 hidden text-sm font-semibold text-red-600" data-field-error>
+            Please enter your full name.
+          </p>
+        </div>
+
+        <div data-field>
           <label for="attendance" class="mb-2 block font-semibold text-[var(--forest)]">Will you be attending?</label>
-          <select id="attendance" name="attendance" class="w-full rounded-xl border p-4" required>
+          <select id="attendance" name="attendance" class="w-full rounded-xl border p-4" required data-required-field aria-describedby="attendance-error">
             <option value="">Select an option</option>
             <option value="Joyfully Accepts">Joyfully Accepts</option>
             <option value="Regretfully Declines">Regretfully Declines</option>
           </select>
+          <p id="attendance-error" class="mt-2 hidden text-sm font-semibold text-red-600" data-field-error>
+            Please choose whether you will be attending.
+          </p>
         </div>
 
-        <div>
+        <div data-field>
           <label for="guests" class="mb-2 block font-semibold text-[var(--forest)]">Number of Guests</label>
-          <input id="guests" name="guests" type="number" min="1" max="10" class="w-full rounded-xl border p-4" value="1" required />
+          <input id="guests" name="guests" type="number" min="1" max="15" step="1" inputmode="numeric" class="w-full rounded-xl border p-4" value="1" required data-required-field data-integer-field aria-describedby="guests-error" />
+          <p id="guests-error" class="mt-2 hidden text-sm font-semibold text-red-600" data-field-error>
+            Please enter a whole number of guests.
+          </p>
         </div>
 
-        <div>
+        <div data-field>
           <label for="message" class="mb-2 block font-semibold text-[var(--forest)]">Message for the Couple</label>
-          <textarea id="message" name="message" rows="5" class="w-full rounded-xl border p-4" placeholder="Optional"></textarea>
+          <textarea id="message" name="message" rows="5" class="w-full rounded-xl border p-4" placeholder="Write a short note" required data-required-field aria-describedby="message-error"></textarea>
+          <p id="message-error" class="mt-2 hidden text-sm font-semibold text-red-600" data-field-error>
+            Please leave a message for the couple.
+          </p>
         </div>
 
         <div id="form-success" class="hidden rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
@@ -78,10 +99,48 @@ import Navigation from "../components/Navigation.astro";
 
   <script>
     const form = document.getElementById('rsvp-form');
+    const formError = document.getElementById('form-error');
     const successMessage = document.getElementById('form-success');
 
-    if (form && successMessage) {
-      form.addEventListener('submit', () => {
+    if (form && formError && successMessage) {
+      const requiredFields = Array.from(form.querySelectorAll('[data-required-field]'));
+
+      const markField = (field) => {
+        const isMissing = !field.value.trim();
+        const mustBeInteger = field.hasAttribute('data-integer-field');
+        const numberValue = Number(field.value);
+        const isInvalidInteger = !isMissing && mustBeInteger && (!Number.isInteger(numberValue) || numberValue < Number(field.min) || numberValue > Number(field.max));
+        const hasError = isMissing || isInvalidInteger;
+        const fieldGroup = field.closest('[data-field]');
+        const fieldError = fieldGroup?.querySelector('[data-field-error]');
+
+        field.classList.toggle('border-red-400', hasError);
+        field.classList.toggle('bg-red-50/50', hasError);
+        field.classList.toggle('ring-2', hasError);
+        field.classList.toggle('ring-red-100', hasError);
+        field.setAttribute('aria-invalid', String(hasError));
+        fieldError?.classList.toggle('hidden', !hasError);
+
+        return !hasError;
+      };
+
+      requiredFields.forEach((field) => {
+        field.addEventListener('input', () => markField(field));
+        field.addEventListener('change', () => markField(field));
+      });
+
+      form.addEventListener('submit', (event) => {
+        const missingFields = requiredFields.filter((field) => !markField(field));
+
+        if (missingFields.length > 0) {
+          event.preventDefault();
+          successMessage.classList.add('hidden');
+          formError.classList.remove('hidden');
+          missingFields[0].focus();
+          return;
+        }
+
+        formError.classList.add('hidden');
         successMessage.classList.remove('hidden');
       });
     }
