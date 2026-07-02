@@ -41,10 +41,12 @@ const bookedRibbonClasses = "pointer-events-none absolute left-[-34%] top-1/2 z-
   .flip-card-inner {
     transition: transform 0.7s ease;
     transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
   }
 
   .flip-card-face {
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .flip-card-back {
@@ -55,7 +57,7 @@ const bookedRibbonClasses = "pointer-events-none absolute left-[-34%] top-1/2 z-
 <div class="flip-card group [perspective:1000px]">
   <input id={cardId} type="checkbox" class="sr-only" />
 
-  <label for={cardId} class="block cursor-pointer">
+  <label for={cardId} class="relative block cursor-pointer">
     <div class="flip-card-inner relative h-[580px] w-full rounded-[1.5rem] bg-white shadow-xl hover:shadow-2xl sm:h-[560px] sm:rounded-[2rem]">
 
       <div class="flip-card-face absolute inset-0 h-full w-full overflow-hidden rounded-[1.5rem] bg-white sm:rounded-[2rem]">
@@ -83,11 +85,6 @@ const bookedRibbonClasses = "pointer-events-none absolute left-[-34%] top-1/2 z-
           </p>
         </div>
 
-        {isBooked && (
-          <div class={bookedRibbonClasses}>
-            Booked
-          </div>
-        )}
       </div>
 
       <div class="flip-card-face flip-card-back absolute inset-0 h-full w-full overflow-hidden rounded-[1.5rem] border border-[var(--forest)]/10 bg-[linear-gradient(135deg,#f8efe0_0%,#fffaf2_100%)] p-5 text-[var(--forest)] sm:rounded-[2rem] sm:p-8">
@@ -138,13 +135,16 @@ const bookedRibbonClasses = "pointer-events-none absolute left-[-34%] top-1/2 z-
           </div>
         </div>
 
-        {isBooked && (
-          <div class={bookedRibbonClasses}>
-            Booked
-          </div>
-        )}
       </div>
 
     </div>
+
+    {isBooked && (
+      <div class="pointer-events-none absolute inset-0 z-10 overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
+        <div class={bookedRibbonClasses}>
+          Booked
+        </div>
+      </div>
+    )}
   </label>
 </div>

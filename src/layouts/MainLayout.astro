@@ -15,6 +15,21 @@ const { title = "Forever & Always | Éli-Samuel & Delilah" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <script is:inline>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+
+      const scrollToTopUnlessHash = () => {
+        if (!window.location.hash) {
+          window.scrollTo(0, 0);
+        }
+      };
+
+      scrollToTopUnlessHash();
+      window.addEventListener("pageshow", scrollToTopUnlessHash);
+      window.addEventListener("load", scrollToTopUnlessHash);
+    </script>
   </head>
 
   <body>
