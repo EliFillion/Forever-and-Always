@@ -1,6 +1,22 @@
 ---
 import SectionHeading from "../UI/SectionHeading.astro";
 import GiftCard from "./GiftCard.astro";
+
+interface Props {
+  data: {
+    heading: {
+      eyebrow: string;
+      title: string;
+    };
+    celebrateTitle: string;
+    celebrateDescription: string;
+    registryTitle: string;
+    registryDescription: string;
+    registryLink: string;
+  };
+}
+
+const { data } = Astro.props;
 ---
 
 <section id="gifts" class="bg-white py-32">
@@ -8,25 +24,25 @@ import GiftCard from "./GiftCard.astro";
   <div class="container max-w-5xl">
 
     <SectionHeading
-      eyebrow="Gifts"
-      title="Your Presence Is Our Greatest Gift"
+      eyebrow={data.heading.eyebrow}
+      title={data.heading.title}
     />
 
     <div class="grid gap-10 md:grid-cols-2">
 
       <GiftCard
-        title="Celebrate With Us"
-        description="The greatest gift we could receive is the opportunity to celebrate our wedding day with you. Your love, prayers, and support mean more to us than anything else. We are so grateful to share this special day with each of you."
+        title={data.celebrateTitle}
+        description={data.celebrateDescription}
       />
 
       <div class="rounded-3xl border border-gray-200 bg-[var(--cream)] p-10 shadow-lg">
 
         <h3 class="font-serif text-3xl text-[var(--forest)]">
-          Wedding Registry
+          {data.registryTitle}
         </h3>
 
         <p class="mt-6 leading-8 text-gray-700">
-          For those who desire to bless us further, we do have an Amazon Registry. Thank you for your generosity and kindness as we begin this new chapter together.
+          {data.registryDescription}
         </p>
 
         <a
@@ -35,7 +51,7 @@ import GiftCard from "./GiftCard.astro";
           rel="noopener noreferrer"
           class="mt-10 inline-flex items-center rounded-full bg-[var(--gold)] px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:opacity-90"
         >
-          View Our Amazon Registry
+          {data.registryLink}
         </a>
 
       </div>

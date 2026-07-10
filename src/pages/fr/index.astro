@@ -1,25 +1,25 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 
-import Navigation from "../components/Navigation.astro";
-import Hero from "../components/Hero.astro";
-import StoryPreview from "../components/Story/StoryPreview.astro";
-import WeddingDetails from "../components/WeddingDetails.astro";
-import Accommodations from "../components/Accommodations/Accommodations.astro";
-import Travel from "../components/Travel/Travel.astro";
-import Gifts from "../components/Gifts/Gifts.astro";
-import FAQ from "../components/FAQ/FAQ.astro";
-import Gallery from "../components/Gallery/Gallery.astro";
-import { getSite, locales } from "../data/site";
+import Navigation from "../../components/Navigation.astro";
+import Hero from "../../components/Hero.astro";
+import StoryPreview from "../../components/Story/StoryPreview.astro";
+import WeddingDetails from "../../components/WeddingDetails.astro";
+import Accommodations from "../../components/Accommodations/Accommodations.astro";
+import Travel from "../../components/Travel/Travel.astro";
+import Gifts from "../../components/Gifts/Gifts.astro";
+import FAQ from "../../components/FAQ/FAQ.astro";
+import Gallery from "../../components/Gallery/Gallery.astro";
+import { getSite, locales } from "../../data/site";
 
-const locale = "en";
+const locale = "fr";
 const page = getSite(locale);
 ---
 
 <MainLayout title={page.metaTitle} lang={locales[locale].htmlLang}>
 
   <Navigation locale={locale} links={page.navigation} rsvpLabel={page.rsvpLabel} shortDate={page.wedding.shortDate} />
-  <Hero data={page} />
+  <Hero data={page} rsvpPath="/fr/rsvp" />
   <StoryPreview data={page.story} />
   <WeddingDetails data={page.weddingDetails} />
   <Accommodations data={page.accommodations} />

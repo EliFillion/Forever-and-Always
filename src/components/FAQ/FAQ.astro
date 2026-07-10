@@ -1,6 +1,21 @@
 ---
 import SectionHeading from "../UI/SectionHeading.astro";
 import FAQItem from "./FAQItem.astro";
+
+interface Props {
+  data: {
+    heading: {
+      eyebrow: string;
+      title: string;
+    };
+    items: readonly {
+      question: string;
+      answer: string;
+    }[];
+  };
+}
+
+const { data } = Astro.props;
 ---
 
 <section id="faq" class="bg-[var(--cream)] py-32">
@@ -8,46 +23,15 @@ import FAQItem from "./FAQItem.astro";
   <div class="container max-w-5xl">
 
     <SectionHeading
-      eyebrow="FAQ"
-      title="Frequently Asked Questions"
+      eyebrow={data.heading.eyebrow}
+      title={data.heading.title}
     />
 
     <div class="space-y-6">
 
-      <FAQItem
-        question="When should I RSVP by?"
-        answer="Our RSVP closes on September 1st. Please consider taking your spot as soon as possible, as we may reach our venue capacity."
-      />
-
-      <FAQItem
-        question="Can I bring a guest?"
-        answer="Please refer to the names listed on your invitation. If you have any questions, don't hesitate to reach out to us."
-      />
-
-      <FAQItem
-        question="Are children invited?"
-        answer="All children of invited parents are welcome and invited. There will in fact be assigned tables for children. That being said, considering our limited venue capacity, if you would rather have them stay home, you are more than welcome to do so as well. Excited to see every face, from young to old!"
-      />
-
-      <FAQItem
-        question="What about dietary restrictions?"
-        answer="Unfortunately we will not be in measure to accomodate allergies and intolerances. Our food will include eggs, milk, and likely nuts.We encourage every concerned guest to bring their own food in case of doubt. Please contact us concerning any such questions."
-      />
-
-      <FAQItem
-        question="Is there parking available?"
-        answer="Yes! Parking will be available at Hartsel Ranch, with signs directing guests upon arrival."
-      />
-
-      <FAQItem
-        question="Will the ceremony be indoors or outdoors?"
-        answer="Our current plan is to celebrate outdoors, weather permitting."
-      />
-
-      <FAQItem
-        question="What should I wear?"
-        answer="Our dress code is semi-formal. Since October afternoons and evenings in Colorado can be cool, we recommend bringing a light jacket."
-      />
+      {data.items.map((item) => (
+        <FAQItem question={item.question} answer={item.answer} />
+      ))}
 
     </div>
 

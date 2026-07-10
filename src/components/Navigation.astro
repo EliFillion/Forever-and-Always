@@ -1,16 +1,46 @@
+---
+import { locales, type Locale } from "../data/site";
+
+interface Props {
+  locale?: Locale;
+  links?: readonly {
+    label: string;
+    href: string;
+  }[];
+  rsvpLabel?: string;
+  shortDate?: string;
+}
+
+const {
+  locale = "en",
+  links = [],
+  rsvpLabel = "RSVP",
+  shortDate = "October 11 • 2026",
+} = Astro.props;
+
+const localeInfo = locales[locale];
+const basePath = locale === "fr" ? "/fr" : "";
+const rsvpPath = locale === "fr" ? "/fr/rsvp" : "/rsvp";
+const homePath = locale === "fr" ? "/fr" : "/";
+const isRsvpPage = Astro.url.pathname.endsWith("/rsvp");
+const switchPath = locale === "fr" ? (isRsvpPage ? "/rsvp" : "/") : (isRsvpPage ? "/fr/rsvp" : "/fr");
+
+const getHref = (href: string) => href.startsWith("#") ? `${basePath || "/"}${href}` : href;
+---
+
 <nav class="fixed inset-x-0 top-0 z-50 overflow-x-clip px-0.5 pt-2 sm:px-3 sm:pt-0">
   <div
     class="mx-auto ml-0 mt-1 flex w-[calc(100vw-0.25rem)] max-w-7xl items-center justify-between overflow-hidden rounded-full border border-white/10 bg-black/35 px-3 py-3 shadow-xl backdrop-blur-xl sm:ml-auto sm:mt-5 sm:w-[calc(100vw-1rem)] sm:px-6 sm:py-4 md:px-8"
   >
 
-    <a href={Astro.url.pathname === "/rsvp" ? "/" : "#"} class="group max-w-full">
+    <a href={isRsvpPage ? homePath : `${homePath}#`} class="group max-w-full">
       <div class="leading-none">
         <div class="font-serif text-[1.45rem] tracking-[0.2em] text-white sm:text-3xl sm:tracking-[0.25em]">
           E <span class="text-amber-300">&amp;</span> D
         </div>
 
         <div class="mt-1 text-[10px] uppercase tracking-[0.45em] text-gray-300">
-          October 11 • 2026
+          {shortDate}
         </div>
       </div>
     </a>
@@ -27,34 +57,20 @@
       </svg>
     </button>
 
-    <div class="hidden items-center gap-10 md:flex">
+    <div class="hidden items-center gap-7 md:flex">
 
-      <a href="/#story" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
-        Our Story
+      {links.map((link) => (
+        <a href={getHref(link.href)} class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
+          {link.label}
+        </a>
+      ))}
+
+      <a href={rsvpPath} class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
+        {rsvpLabel}
       </a>
 
-      <a href="/#wedding" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
-        Wedding
-      </a>
-
-      <a href="/#accommodations" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
-        Accommodations
-      </a>
-
-      <a href="/#travel" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
-        Travel
-      </a>
-
-      <a href="/#gifts" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
-        Gifts
-      </a>
-
-      <a href="/#faq" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
-        FAQ
-      </a>
-
-      <a href="/rsvp" class="nav-link text-sm uppercase tracking-[0.25em] text-gray-200 transition-colors duration-300 hover:text-amber-300">
-        RSVP
+      <a href={switchPath} class="rounded-full border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:border-amber-300 hover:text-amber-300">
+        {localeInfo.switchLabel}
       </a>
 
     </div>
@@ -62,32 +78,18 @@
   </div>
 
   <div id="mobile-nav-menu" class="mx-auto mt-3 hidden w-[calc(100vw-1rem)] max-w-7xl flex-col gap-2 overflow-hidden rounded-3xl border border-white/10 bg-black/70 p-3 shadow-xl backdrop-blur-xl md:hidden">
-    <a href="/#story" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
-      Our Story
+    {links.map((link) => (
+      <a href={getHref(link.href)} class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
+        {link.label}
+      </a>
+    ))}
+
+    <a href={rsvpPath} class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
+      {rsvpLabel}
     </a>
 
-    <a href="/#wedding" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
-      Wedding
-    </a>
-
-    <a href="/#accommodations" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
-      Accommodations
-    </a>
-
-    <a href="/#travel" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
-      Travel
-    </a>
-
-    <a href="/#gifts" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
-      Gifts
-    </a>
-
-    <a href="/#faq" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
-      FAQ
-    </a>
-
-    <a href="/rsvp" class="nav-link rounded-2xl px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
-      RSVP
+    <a href={switchPath} class="rounded-2xl border border-white/15 px-3 py-2 text-xs uppercase tracking-[0.18em] text-gray-200 transition-colors duration-300 hover:bg-white/10 hover:text-amber-300 sm:text-sm sm:tracking-[0.25em]">
+      {localeInfo.switchLabel}
     </a>
   </div>
 </nav>

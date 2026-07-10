@@ -1,6 +1,20 @@
 ---
 import SectionHeading from "../UI/SectionHeading.astro";
 import GalleryImage from "./GalleryImage.astro";
+
+interface Props {
+  data: {
+    heading: {
+      eyebrow: string;
+      title: string;
+    };
+    photoAlt: string;
+    closingVerse: string;
+    closingReference: string;
+  };
+}
+
+const { data } = Astro.props;
 ---
 
 <section id="gallery" class="bg-white py-32">
@@ -8,24 +22,15 @@ import GalleryImage from "./GalleryImage.astro";
   <div class="container max-w-6xl">
 
     <SectionHeading
-      eyebrow="Gallery"
-      title="Engagement Pictures"
+      eyebrow={data.heading.eyebrow}
+      title={data.heading.title}
     />
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-      <GalleryImage image="/images/gallery/1.jpg" alt="Photo 1" />
-      <GalleryImage image="/images/gallery/2.jpg" alt="Photo 2" />
-      <GalleryImage image="/images/gallery/3.jpg" alt="Photo 3" />
-      <GalleryImage image="/images/gallery/4.jpg" alt="Photo 4" />
-      <GalleryImage image="/images/gallery/5.jpg" alt="Photo 5" />
-      <GalleryImage image="/images/gallery/6.jpg" alt="Photo 6" />
-      <GalleryImage image="/images/gallery/7.jpg" alt="Photo 7" />
-      <GalleryImage image="/images/gallery/8.jpg" alt="Photo 8" />
-      <GalleryImage image="/images/gallery/9.jpg" alt="Photo 9" />
-      <GalleryImage image="/images/gallery/10.jpg" alt="Photo 10" />
-      <GalleryImage image="/images/gallery/11.jpg" alt="Photo 11" />
-      <GalleryImage image="/images/gallery/12.jpg" alt="Photo 12" />
+      {Array.from({ length: 12 }, (_, index) => (
+        <GalleryImage image={`/images/gallery/${index + 1}.jpg`} alt={`${data.photoAlt} ${index + 1}`} />
+      ))}
 
     </div>
 
@@ -36,11 +41,11 @@ import GalleryImage from "./GalleryImage.astro";
     >
 
       <p class="text-3xl italic text-[var(--forest)]">
-        "What therefore God has joined together, let no man separate."
+        "{data.closingVerse}"
       </p>
 
       <p class="mt-4 text-[var(--gold)]">
-        Mark 10:9
+        {data.closingReference}
       </p>
 
     </div>

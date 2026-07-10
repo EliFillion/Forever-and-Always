@@ -1,6 +1,24 @@
 ---
 import SectionHeading from "../UI/SectionHeading.astro";
 import TravelCard from "./TravelCard.astro";
+
+interface Props {
+  data: {
+    heading: {
+      eyebrow: string;
+      title: string;
+    };
+    cards: readonly {
+      image: string;
+      title: string;
+      description: string;
+      linkText?: string;
+      linkUrl?: string;
+    }[];
+  };
+}
+
+const { data } = Astro.props;
 ---
 
 <section id="travel" class="bg-[var(--cream)] py-32">
@@ -8,31 +26,15 @@ import TravelCard from "./TravelCard.astro";
   <div class="container max-w-6xl">
 
     <SectionHeading
-      eyebrow="Travel"
-      title="Planning Your Trip"
+      eyebrow={data.heading.eyebrow}
+      title={data.heading.title}
     />
 
     <div class="grid gap-10 lg:grid-cols-3">
 
-      <TravelCard
-        image="/images/travel/airport.jpg"
-        title="Flying In"
-        description="Colorado Springs Airport is the closest major airport to the venue, with Denver International Airport offering additional flight options for guests traveling from farther away. From Colorado Springs, the drive to Hartsel Ranch is about 1 hour 30 minutes, and from Denver it is about 2 hours 30 minutes."
-      />
-
-      <TravelCard
-        image="/images/travel/drive.jpg"
-        title="Driving"
-        description="Hartsel Ranch is easily accessible by car, and the scenic route makes for a beautiful arrival. Use the map below to find directions to the venue."
-        linkText="Open Map"
-        linkUrl="https://google.com/maps/search/39.015132,+-105.757222?entry=tts&g_ep=EgoyMDI2MDYyNC4wIPu8ASoASAFQAw%3D%3D&skid=c6956dfc-acad-41b4-ad07-2fed73d80c0a"
-      />
-
-      <TravelCard
-        image="/images/travel/colorado.jpg"
-        title="Colorado Tips"
-        description="October in the Rockies can bring warm afternoons and cool evenings. We recommend dressing in layers and staying hydrated, as the elevation is over 9,000 feet and the mountain air can feel crisp even on sunny days."
-      />
+      {data.cards.map((card) => (
+        <TravelCard {...card} />
+      ))}
 
     </div>
 

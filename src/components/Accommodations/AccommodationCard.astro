@@ -12,6 +12,17 @@ interface Props {
   backImages?: string[];
   bookingNote?: string;
   isBooked?: boolean;
+  labels?: {
+    driveTime: string;
+    details: string;
+    click: string;
+    pricing: string;
+    space: string;
+    booking: string;
+    website: string;
+    visitWebsite: string;
+    booked: string;
+  };
 }
 
 const {
@@ -27,6 +38,17 @@ const {
   backImages = [],
   bookingNote = "Please contact us before booking any room, as reservations must be arranged through us.",
   isBooked = false,
+  labels = {
+    driveTime: "Drive time from venue",
+    details: "Details",
+    click: "Click to see details",
+    pricing: "Pricing:",
+    space: "Space:",
+    booking: "Booking:",
+    website: "Website:",
+    visitWebsite: "Visit website",
+    booked: "Booked",
+  },
 } = Astro.props;
 
 const cardId = `accommodation-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
@@ -73,7 +95,7 @@ const bookedRibbonClasses = "pointer-events-none absolute left-[-34%] top-1/2 z-
           </h3>
 
           <p class="mt-3 text-sm uppercase tracking-[0.25em] text-[var(--gold)]">
-            Drive time from venue • {driveTime}
+            {labels.driveTime} • {driveTime}
           </p>
 
           <p class="mt-6 leading-8 text-gray-700">
@@ -81,7 +103,7 @@ const bookedRibbonClasses = "pointer-events-none absolute left-[-34%] top-1/2 z-
           </p>
 
           <p class="mt-5 text-xs uppercase tracking-[0.22em] text-[var(--gold)] sm:text-sm">
-            Click to see details
+            {labels.click}
           </p>
         </div>
 
@@ -92,7 +114,7 @@ const bookedRibbonClasses = "pointer-events-none absolute left-[-34%] top-1/2 z-
           <div>
             <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
               <p class="text-xs uppercase tracking-[0.2em] text-[var(--gold)] sm:text-sm sm:tracking-[0.25em]">
-                Details
+                {labels.details}
               </p>
               <h3 class="text-xl font-serif sm:text-2xl">
                 {title}
@@ -114,21 +136,21 @@ const bookedRibbonClasses = "pointer-events-none absolute left-[-34%] top-1/2 z-
 
           <div class="mt-4 space-y-2 text-xs leading-5 sm:mt-5 sm:text-sm sm:leading-6">
             <p>
-              <span class="font-semibold text-[var(--gold)]">Pricing:</span>
+              <span class="font-semibold text-[var(--gold)]">{labels.pricing}</span>
               {cost}
             </p>
             <p>
-              <span class="font-semibold text-[var(--gold)]">Space:</span>
+              <span class="font-semibold text-[var(--gold)]">{labels.space}</span>
               {space}
             </p>
             <p>
-              <span class="font-semibold text-[var(--gold)]">Booking:</span>
+              <span class="font-semibold text-[var(--gold)]">{labels.booking}</span>
               {bookingNote}
             </p>
             <p>
-              <span class="font-semibold text-[var(--gold)]">Website:</span>
+              <span class="font-semibold text-[var(--gold)]">{labels.website}</span>
               <a href={website} target="_blank" rel="noreferrer" class="ml-1 underline decoration-[var(--gold)] underline-offset-4">
-                <span class="sm:hidden">Visit website</span>
+                <span class="sm:hidden">{labels.visitWebsite}</span>
                 <span class="hidden break-all sm:inline">{website}</span>
               </a>
             </p>
@@ -142,7 +164,7 @@ const bookedRibbonClasses = "pointer-events-none absolute left-[-34%] top-1/2 z-
     {isBooked && (
       <div class="pointer-events-none absolute inset-0 z-10 overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]">
         <div class={bookedRibbonClasses}>
-          Booked
+          {labels.booked}
         </div>
       </div>
     )}

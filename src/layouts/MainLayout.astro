@@ -4,13 +4,17 @@ import "aos/dist/aos.css";
 
 interface Props {
   title?: string;
+  lang?: string;
 }
 
-const { title = "Forever & Always | Éli-Samuel & Delilah" } = Astro.props;
+const {
+  title = "Forever & Always | Éli-Samuel & Delilah",
+  lang = "en",
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

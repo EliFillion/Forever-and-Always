@@ -1,9 +1,9 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import Navigation from "../components/Navigation.astro";
-import { getSite, locales } from "../data/site";
+import MainLayout from "../../layouts/MainLayout.astro";
+import Navigation from "../../components/Navigation.astro";
+import { getSite, locales } from "../../data/site";
 
-const locale = "en";
+const locale = "fr";
 const page = getSite(locale);
 ---
 
@@ -22,12 +22,12 @@ const page = getSite(locale);
         </p>
 
         <h1 class="mt-4 font-serif text-5xl text-[var(--forest)]">
-          We'd Love to Celebrate With You
+          Nous aimerions célébrer avec vous
         </h1>
 
         <p class="mt-8 text-lg leading-8 text-gray-600">
-          Kindly respond by <strong>September 1, 2026</strong>.
-          We can't wait to celebrate this special day together!
+          Merci de répondre avant le <strong>1er septembre 2026</strong>.
+          Nous avons très hâte de célébrer cette journée spéciale ensemble!
         </p>
 
       </div>
@@ -45,54 +45,54 @@ const page = getSite(locale);
           class="hidden rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"
           role="alert"
         >
-          Please fill out every field before sending your RSVP.
+          Veuillez remplir tous les champs avant d'envoyer votre réponse.
         </div>
 
         <div data-field>
-          <label for="name" class="mb-2 block font-semibold text-[var(--forest)]">Full Name</label>
-          <input id="name" name="name" type="text" class="w-full rounded-xl border p-4" placeholder="Your name" required data-required-field aria-describedby="name-error" />
+          <label for="name" class="mb-2 block font-semibold text-[var(--forest)]">Nom complet</label>
+          <input id="name" name="name" type="text" class="w-full rounded-xl border p-4" placeholder="Votre nom" required data-required-field aria-describedby="name-error" />
           <p id="name-error" class="mt-2 hidden text-sm font-semibold text-red-600" data-field-error>
-            Please enter your full name.
+            Veuillez entrer votre nom complet.
           </p>
         </div>
 
         <div data-field>
-          <label for="attendance" class="mb-2 block font-semibold text-[var(--forest)]">Will you be attending?</label>
+          <label for="attendance" class="mb-2 block font-semibold text-[var(--forest)]">Serez-vous présent?</label>
           <select id="attendance" name="attendance" class="w-full rounded-xl border p-4" required data-required-field aria-describedby="attendance-error">
-            <option value="">Select an option</option>
-            <option value="Joyfully Accepts">Joyfully Accepts</option>
-            <option value="Regretfully Declines">Regretfully Declines</option>
+            <option value="">Choisir une option</option>
+            <option value="Joyfully Accepts">Accepte avec joie</option>
+            <option value="Regretfully Declines">Décline avec regret</option>
           </select>
           <p id="attendance-error" class="mt-2 hidden text-sm font-semibold text-red-600" data-field-error>
-            Please choose whether you will be attending.
+            Veuillez indiquer si vous serez présent.
           </p>
         </div>
 
         <div data-field>
-          <label for="guests" class="mb-2 block font-semibold text-[var(--forest)]">Number of Guests</label>
+          <label for="guests" class="mb-2 block font-semibold text-[var(--forest)]">Nombre d'invités</label>
           <input id="guests" name="guests" type="number" min="1" max="15" step="1" inputmode="numeric" class="w-full rounded-xl border p-4" value="1" required data-required-field data-integer-field aria-describedby="guests-error" />
           <p id="guests-error" class="mt-2 hidden text-sm font-semibold text-red-600" data-field-error>
-            Please enter a whole number of guests.
+            Veuillez entrer un nombre entier d'invités.
           </p>
         </div>
 
         <div data-field>
-          <label for="message" class="mb-2 block font-semibold text-[var(--forest)]">Message for the Couple</label>
-          <textarea id="message" name="message" rows="5" class="w-full rounded-xl border p-4" placeholder="Write a short note" required data-required-field aria-describedby="message-error"></textarea>
+          <label for="message" class="mb-2 block font-semibold text-[var(--forest)]">Message pour le couple</label>
+          <textarea id="message" name="message" rows="5" class="w-full rounded-xl border p-4" placeholder="Écrivez un petit mot" required data-required-field aria-describedby="message-error"></textarea>
           <p id="message-error" class="mt-2 hidden text-sm font-semibold text-red-600" data-field-error>
-            Please leave a message for the couple.
+            Veuillez laisser un message pour le couple.
           </p>
         </div>
 
         <div id="form-success" class="hidden rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
-          Thank you! Your RSVP has been sent successfully.
+          Merci! Votre RSVP a bien été envoyé.
         </div>
 
         <button
           type="submit"
           class="rounded-full bg-[var(--gold)] px-8 py-4 font-semibold text-white transition hover:scale-105"
         >
-          Send RSVP
+          Envoyer le RSVP
         </button>
 
       </form>

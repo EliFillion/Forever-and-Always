@@ -11,19 +11,51 @@ import {
   Coffee,
   PartyPopper,
 } from "lucide-astro";
+
+type EventIcon = "ceremony" | "coffee" | "reception" | "celebration";
+
+interface Props {
+  data: {
+    date: string;
+    eyebrow: string;
+    title: string;
+    intro: string;
+    day: string;
+    location: string;
+    locationArea: string;
+    dressCodeLabel: string;
+    dressCode: string;
+    mapLabel: string;
+    venueText: string;
+    timelineTitle: string;
+    events: readonly {
+      time: string;
+      label: string;
+      icon: EventIcon;
+    }[];
+  };
+}
+
+const { data } = Astro.props;
+
+const icons = {
+  ceremony: Church,
+  coffee: Coffee,
+  reception: UtensilsCrossed,
+  celebration: PartyPopper,
+};
 ---
 
 <section id="wedding" class="bg-white py-32">
   <div class="container max-w-6xl">
 
     <div data-aos="fade-up" class="mx-auto mb-20 max-w-3xl text-center">
-      <p class="uppercase tracking-[0.45em] text-[var(--gold)]">Wedding Day</p>
+      <p class="uppercase tracking-[0.45em] text-[var(--gold)]">{data.eyebrow}</p>
       <h2 class="mt-4 font-serif text-5xl text-[var(--forest)]">
-        Join Us As We Say "I Do"
+        {data.title}
       </h2>
       <p class="mt-8 text-lg leading-8 text-gray-600">
-        We are so excited to celebrate the beginning of our marriage with our family and friends.
-        Here are the details for our special day.
+        {data.intro}
       </p>
     </div>
 
@@ -34,8 +66,8 @@ import {
         <div class="mb-8 flex items-center gap-4">
           <CalendarDays size={34} class="text-[var(--gold)]" />
           <div>
-            <h3 class="font-serif text-3xl text-[var(--forest)]">Sunday</h3>
-            <p class="text-gray-600">October 11, 2026</p>
+            <h3 class="font-serif text-3xl text-[var(--forest)]">{data.day}</h3>
+            <p class="text-gray-600">{data.date}</p>
           </div>
         </div>
 
@@ -44,32 +76,32 @@ import {
           <div class="flex items-start gap-4">
             <Clock3 size={24} class="mt-1 text-[var(--gold)]" />
             <div>
-              <h4 class="font-semibold text-[var(--forest)]">Ceremony</h4>
-              <p class="text-gray-700">2:00 PM</p>
+              <h4 class="font-semibold text-[var(--forest)]">{data.events[0].label}</h4>
+              <p class="text-gray-700">{data.events[0].time}</p>
             </div>
           </div>
 
           <div class="flex items-start gap-4">
             <UtensilsCrossed size={24} class="mt-1 text-[var(--gold)]" />
             <div>
-              <h4 class="font-semibold text-[var(--forest)]">Refreshments &amp; Fellowship</h4>
-              <p class="text-gray-700">3:00 PM</p>
+              <h4 class="font-semibold text-[var(--forest)]">{data.events[1].label}</h4>
+              <p class="text-gray-700">{data.events[1].time}</p>
             </div>
           </div>
 
           <div class="flex items-start gap-4">
             <Heart size={24} class="mt-1 text-[var(--gold)]" />
             <div>
-              <h4 class="font-semibold text-[var(--forest)]">Reception</h4>
-              <p class="text-gray-700">4:00 PM</p>
+              <h4 class="font-semibold text-[var(--forest)]">{data.events[2].label}</h4>
+              <p class="text-gray-700">{data.events[2].time}</p>
             </div>
           </div>
 
           <div class="flex items-start gap-4">
             <Shirt size={24} class="mt-1 text-[var(--gold)]" />
             <div>
-              <h4 class="font-semibold text-[var(--forest)]">Dress Code</h4>
-              <p class="text-gray-700">Semi-Formal</p>
+              <h4 class="font-semibold text-[var(--forest)]">{data.dressCodeLabel}</h4>
+              <p class="text-gray-700">{data.dressCode}</p>
             </div>
           </div>
 
@@ -81,21 +113,19 @@ import {
         <div class="mb-8 flex items-center gap-4">
           <MapPinned size={34} class="text-[var(--gold)]" />
           <div>
-            <h3 class="font-serif text-3xl">Hartsel Ranch</h3>
-            <p class="text-gray-200">Hartsel, Colorado</p>
+            <h3 class="font-serif text-3xl">{data.location}</h3>
+            <p class="text-gray-200">{data.locationArea}</p>
           </div>
         </div>
 
         <p class="leading-8 text-gray-100">
-          Our ceremony and reception will both take place at Hartsel Ranch,
-          surrounded by the beautiful Colorado mountains.
-          We can't wait to celebrate this unforgettable day with you.
+          {data.venueText}
         </p>
 
         <a href="https://maps.app.goo.gl/6u8A1tPqC26uttRK9"
            target="_blank"
            class="mt-10 inline-flex items-center gap-3 rounded-full bg-[var(--gold)] px-8 py-4 font-semibold text-white transition hover:scale-105 hover:opacity-90">
-          View Venue on Google Maps
+          {data.mapLabel}
           <ExternalLink size={18} />
         </a>
 
@@ -106,7 +136,7 @@ import {
     <div data-aos="fade-up" class="mt-24">
 
       <h3 class="mb-16 text-center font-serif text-4xl text-[var(--forest)]">
-        Wedding Day Timeline
+        {data.timelineTitle}
       </h3>
 
       <div class="relative">
@@ -114,29 +144,16 @@ import {
 
         <div class="grid gap-10 md:grid-cols-4">
 
-          <div class="text-center">
-            <div class="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-white shadow-lg"><Church size={24} /></div>
-            <h4 class="font-serif text-2xl text-[var(--forest)]">2:00 PM</h4>
-            <p class="mt-2 text-gray-700">Ceremony</p>
-          </div>
-
-          <div class="text-center">
-            <div class="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-white shadow-lg"><Coffee size={24} /></div>
-            <h4 class="font-serif text-2xl text-[var(--forest)]">3:00 PM</h4>
-            <p class="mt-2 text-gray-700">Refreshments &amp; Fellowship</p>
-          </div>
-
-          <div class="text-center">
-            <div class="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-white shadow-lg"><UtensilsCrossed size={24} /></div>
-            <h4 class="font-serif text-2xl text-[var(--forest)]">4:00 PM</h4>
-            <p class="mt-2 text-gray-700">Reception</p>
-          </div>
-
-          <div class="text-center">
-            <div class="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-white shadow-lg"><PartyPopper size={24} /></div>
-            <h4 class="font-serif text-2xl text-[var(--forest)]">Evening</h4>
-            <p class="mt-2 text-gray-700">Celebration</p>
-          </div>
+          {data.events.map((event) => {
+            const Icon = icons[event.icon] ?? PartyPopper;
+            return (
+              <div class="text-center">
+                <div class="relative z-10 mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--gold)] text-white shadow-lg"><Icon size={24} /></div>
+                <h4 class="font-serif text-2xl text-[var(--forest)]">{event.time}</h4>
+                <p class="mt-2 text-gray-700">{event.label}</p>
+              </div>
+            );
+          })}
 
         </div>
       </div>
